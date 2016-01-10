@@ -3,27 +3,28 @@
 namespace Gallery\Gallery;
 
 use Gallery\Gallery;
-use Gallery\Gallery\Security\Factory as SecurityFactory;
 use Gallery\Image\Repository as ImageRepository;
 
 class Factory
 {
-    private $securityFactory;
     private $imageRepository;
 
-    public function __construct(SecurityFactory $securityFactory, ImageRepository $imageRepository)
+    public function __construct(ImageRepository $imageRepository)
     {
-        $this->securityFactory = $securityFactory;
         $this->imageRepository = $imageRepository;
     }
 
     public function getGallery(array $galleryData)
     {
-        return new Gallery($galleryData['id'], $galleryData['name'], $galleryData['slug'], $this->getSecurity($galleryData['security']), $this->imageRepository);
+        return new Gallery($galleryData['id'], $galleryData['name'], $galleryData['slug'], $galleryData['password'], $this->imageRepository);
     }
 
-    private function getSecurity($securityId)
+    private function isGalleryDataValid($galleryData)
     {
-        return $this->securityFactory->getSecurity($securityId);
+        return is_array($galleryData) && empty(
+            array_unique(array_keys($galleryData), [
+                'id', 'name', 'slug', 'password'
+            ]);
+        );
     }
 }
