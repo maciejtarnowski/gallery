@@ -22,10 +22,10 @@ class MySqlRepository implements Repository
         );
     }
 
-    public function getAllByGalleryId($galleryId)
+    public function getAll()
     {
         return $this->getImages(
-            $this->queryAll('SELECT * FROM `image` WHERE `gallery_id` = :gallery_id', [':gallery_id' => $galleryId])
+            $this->queryAll('SELECT * FROM `image`')
         );
     }
 
@@ -36,22 +36,22 @@ class MySqlRepository implements Repository
         );
     }
 
-    private function queryAll($query, $parameters)
+    protected function queryAll($query, $parameters)
     {
         return $this->driver->queryAll($query, $parameters);
     }
 
-    private function query($query, $parameters)
+    protected function query($query, $parameters)
     {
         return $this->driver->query($query, $parameters);
     }
 
-    private function getImage(array $imageData)
+    protected function getImage(array $imageData)
     {
         return $this->imageFactory->getImage($imageData);
     }
 
-    private function getImages(array $imagesData)
+    protected function getImages(array $imagesData)
     {
         return $this->imageFactory->getImages($imagesData);
     }

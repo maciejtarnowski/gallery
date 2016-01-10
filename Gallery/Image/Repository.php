@@ -6,7 +6,7 @@ interface Repository
 {
     public function getById($id);
 
-    public function getByGalleryId($galleryId);
+    public function getAll();
 
     public function getByHash($hash);
 }

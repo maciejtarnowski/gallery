@@ -3,6 +3,7 @@
 namespace Gallery;
 
 use Gallery\Gallery\Security\Security;
+use Gallery\Image\Repository as ImageRepository;
 
 class Gallery
 {
@@ -10,15 +11,15 @@ class Gallery
     private $name;
     private $slug;
     private $security;
-    private $photos;
+    private $images;
 
-    public function __construct($id, $name, $slug, Security $security, array $photos)
+    public function __construct($id, $name, $slug, Security $security, ImageRepository $images)
     {
         $this->id = $id;
         $this->name = $name;
         $this->slug = $slug;
         $this->security = $security;
-        $this->photos = $photos;
+        $this->images = $images;
     }
 
     public function getId()
@@ -41,8 +42,8 @@ class Gallery
         return $this->security;
     }
 
-    public function getPhotos()
+    public function getImages()
     {
-        return $this->photos;
+        return $this->images;
     }
 }
