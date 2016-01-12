@@ -46,7 +46,7 @@ class MySqlRepository implements Repository
         return $this->driver->query($query, $parameters);
     }
 
-    protected function getImage(array $imageData)
+    protected function getImage($imageData)
     {
         return $this->imageFactory->getImage($imageData);
     }

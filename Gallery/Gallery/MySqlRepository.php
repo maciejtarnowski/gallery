@@ -29,6 +29,13 @@ class MySqlRepository implements Repository
         );
     }
 
+    public function getAll()
+    {
+        return $this->getGalleries(
+            $this->queryAll('SELECT * FROM `gallery`')
+        );
+    }
+
     private function queryAll($query, $parameters)
     {
         return $this->driver->queryAll($query, $parameters);
@@ -39,8 +46,13 @@ class MySqlRepository implements Repository
         return $this->driver->query($query, $parameters);
     }
 
-    private function getGallery(array $galleryData)
+    private function getGallery($galleryData)
     {
         return $this->galleryFactory->getGallery($galleryData);
+    }
+
+    private function getGalleries(array $galleriesData)
+    {
+        return $this->galleryFactory->getGalleris($galleriesData);
     }
 }
