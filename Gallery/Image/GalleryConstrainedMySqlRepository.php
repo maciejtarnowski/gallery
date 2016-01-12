@@ -6,7 +6,7 @@ class GalleryConstrainedMySqlRepository extends MySqlRepository
 {
     private $galleryId;
 
-    public function __construct(MySqlDriver $driver, Factory $imageFactory)
+    public function __construct(MySqlDriver $driver, Factory $imageFactory, $galleryId)
     {
         parent::__construct($driver, $imageFactory);
         $this->galleryId = $galleryId;
