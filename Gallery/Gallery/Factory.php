@@ -3,20 +3,20 @@
 namespace Gallery\Gallery;
 
 use Gallery\Gallery;
-use Gallery\Image\Repository as ImageRepository;
+use Gallery\Image\GalleryConstrainedRepositoryFactory;
 
 class Factory
 {
     private $imageRepository;
 
-    public function __construct(ImageRepository $imageRepository)
+    public function __construct(GalleryConstrainedRepositoryFactory $repositoryFactory)
     {
-        $this->imageRepository = $imageRepository;
+        $this->repositoryFactory = $repositoryFactory;
     }
 
     public function getGallery(array $galleryData)
     {
-        return new Gallery($galleryData['id'], $galleryData['name'], $galleryData['slug'], $galleryData['password'], $this->imageRepository);
+        return new Gallery($galleryData['id'], $galleryData['name'], $galleryData['slug'], $galleryData['password'], $this->getRepository($galleryData['id']));
     }
 
     private function isGalleryDataValid($galleryData)
@@ -26,5 +26,10 @@ class Factory
                 'id', 'name', 'slug', 'password'
             ]);
         );
+    }
+
+    private function getRepository($galleryId)
+    {
+        return $this->repositoryFactory->getRepository($galleryId);
     }
 }
