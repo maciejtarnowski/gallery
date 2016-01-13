@@ -1,0 +1,12 @@
+{
+    "require": {
+        "slim/slim": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gallery\\": "Gallery/",
+            "Database\\": "Database/",
+            "UseCase\\": "UseCase/"
+        }
+    }
+}
