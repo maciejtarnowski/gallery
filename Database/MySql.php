@@ -21,12 +21,12 @@ class MySql implements Driver
         $this->password = $password;
     }
 
-    public function query($sql, $parameters)
+    public function query($sql, $parameters = [])
     {
         return $this->prepareAndExecuteQuery($sql, $parameters)->fetch($this->fetchStyle);
     }
 
-    public function queryAll($sql, $parameters)
+    public function queryAll($sql, $parameters = [])
     {
         return $this->prepareAndExecuteQuery($sql, $parameters)->fetchAll($this->fetchStyle);
     }
@@ -65,12 +65,12 @@ class MySql implements Driver
         }
     }
 
-    private function prepareAndExecuteQuery($sql, $parameters)
+    private function prepareAndExecuteQuery($sql, $parameters = [])
     {
         $statement = $this->prepareStatement($sql);
 
         try {
-            $statement->execute($parameters)
+            $statement->execute($parameters);
         } catch (PDOException $ex) {
             throw new DriverException('Could not execute query');
         }
