@@ -23,7 +23,7 @@ class Show implements UseCase
 
         return [
             'gallery' => $gallery,
-            'photos' => $gallery->getImages()->getAll()
+            'images' => $gallery->getImages()->getAll()
         ];
     }
 
