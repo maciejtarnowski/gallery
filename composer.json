@@ -6,7 +6,8 @@
         "psr-4": {
             "Gallery\\": "Gallery/",
             "Database\\": "Database/",
-            "UseCase\\": "UseCase/"
+            "UseCase\\": "UseCase/",
+            "Service\\": "Service/"
         }
     }
 }
