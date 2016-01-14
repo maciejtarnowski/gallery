@@ -1,6 +1,8 @@
 <?php
 
-namespace Gallery;
+namespace Gallery\Image;
+
+use Database\MySql as MySqlDriver;
 
 class GalleryConstrainedMySqlRepository extends MySqlRepository
 {
@@ -9,7 +11,7 @@ class GalleryConstrainedMySqlRepository extends MySqlRepository
     public function __construct(MySqlDriver $driver, Factory $imageFactory, $galleryId)
     {
         parent::__construct($driver, $imageFactory);
-        $this->galleryId = $galleryId;
+        $this->galleryId = (int) $galleryId;
     }
 
     public function getById($id)
