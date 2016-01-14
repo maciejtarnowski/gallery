@@ -14,17 +14,31 @@ class Factory
         $this->repositoryFactory = $repositoryFactory;
     }
 
-    public function getGallery(array $galleryData)
+    public function getGallery($galleryData)
     {
-        return new Gallery($galleryData['id'], $galleryData['name'], $galleryData['slug'], $galleryData['password'], $this->getRepository($galleryData['id']));
+        if (!$this->isGalleryDataValid($galleryData)) {
+            return null;
+        }
+        return new Gallery($galleryData['id'], $galleryData['name'], $galleryData['slug'], $galleryData['password'], $galleryData['created_at'], $this->getRepository($galleryData['id']));
+    }
+
+    public function getGalleries(array $galleriesData)
+    {
+        foreach ($galleriesData as $galleryData) {
+            if (!$this->isGalleryDataValid($galleryData)) {
+                continue;
+            }
+
+            yield $this->getGallery($galleryData);
+        }
     }
 
     private function isGalleryDataValid($galleryData)
     {
         return is_array($galleryData) && empty(
-            array_unique(array_keys($galleryData), [
-                'id', 'name', 'slug', 'password'
-            ]);
+            array_diff([
+                'id', 'name', 'slug', 'password', 'created_at'
+            ], array_keys($galleryData))
         );
     }
 
