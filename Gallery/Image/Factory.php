@@ -12,7 +12,7 @@ class Factory
             return null;
         }
 
-        return new Image($imageData['name'], $imageData['filename'], new Dimensions($imageData['height'], $imageData['width']));
+        return new Image($imageData['id'], $imageData['hash'], $imageData['name'], $imageData['filename'], new Dimensions($imageData['height'], $imageData['width']));
     }
 
     public function getImages(array $imagesData)
@@ -29,9 +29,9 @@ class Factory
     private function isImageDataValid($imageData)
     {
         return is_array($imageData) && empty(
-            array_unique(array_keys($imageData), [
-                'name', 'filename', 'height', 'width'
-            ])
+            array_diff([
+                'id', 'hash', 'name', 'filename', 'height', 'width', 'gallery_id'
+            ], array_keys($imageData))
         );
     }
 }
