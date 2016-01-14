@@ -10,6 +10,7 @@ use Gallery\Gallery\MySqlRepository as GalleryRepository;
 use Gallery\Image\Factory as ImageFactory;
 use Gallery\Image\MySqlRepository as ImageRepository;
 use Gallery\Image\GalleryConstrainedRepositoryFactory;
+use UseCase\Factory as UseCaseFactory;
 
 use Interop\Container\ContainerInterface;
 
@@ -24,9 +25,17 @@ class Manager
 
     public function registerServices()
     {
+        $this->registerUseCaseFactory();
+    }
+
+    private function registerUseCaseFactory()
+    {
         $this->registerImageRepository();
         $this->registerGalleryRepository();
 
+        $this->registerService('UseCaseFactory', function ($container) {
+            return new UseCaseFactory($container->get('GalleryRepository'), $container->get('ImageRepository'));
+        });
     }
 
     private function registerDatabaseDriver()
