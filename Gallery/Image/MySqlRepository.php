@@ -4,6 +4,22 @@ namespace Gallery\Image;
 
 use Database\MySql as MySqlDriver;
 
+/*
+CREATE TABLE `image` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hash` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `height` int(11) NOT NULL,
+  `width` int(11) NOT NULL,
+  `gallery_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `hash` (`hash`),
+  UNIQUE KEY `filename` (`filename`),
+  KEY `gallery_id` (`gallery_id`),
+  CONSTRAINT `image_ibfk_1` FOREIGN KEY (`gallery_id`) REFERENCES `gallery` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+*/
 class MySqlRepository implements Repository
 {
     private $driver;
@@ -36,12 +52,12 @@ class MySqlRepository implements Repository
         );
     }
 
-    protected function queryAll($query, $parameters)
+    protected function queryAll($query, $parameters = [])
     {
         return $this->driver->queryAll($query, $parameters);
     }
 
-    protected function query($query, $parameters)
+    protected function query($query, $parameters = [])
     {
         return $this->driver->query($query, $parameters);
     }
