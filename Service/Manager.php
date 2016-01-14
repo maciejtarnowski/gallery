@@ -4,7 +4,7 @@ namespace Service;
 
 use Closure;
 
-use Database\Mysql;
+use Database\MySql;
 use Gallery\Gallery\Factory as GalleryFactory;
 use Gallery\Gallery\MySqlRepository as GalleryRepository;
 use Gallery\Image\Factory as ImageFactory;
