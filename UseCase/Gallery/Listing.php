@@ -1,11 +1,11 @@
 <?php
 
-namespace UseCase\Gallery\List;
+namespace UseCase\Gallery;
 
 use UseCase\UseCase;
 use Gallery\Gallery\Repository as GalleryRepository;
 
-class List implements UseCase
+class Listing implements UseCase
 {
     private $galleryRepository;
 

@@ -18,16 +18,16 @@ class Factory
 
     public function getGalleryList()
     {
-        return Gallery\List($this->galleryRepository);
+        return new Gallery\Listing($this->galleryRepository);
     }
 
     public function getGalleryShow($slug)
     {
-        return Gallery\Show($this->galleryRepository, $slug);
+        return new Gallery\Show($this->galleryRepository, $slug);
     }
 
     public function getImageShow($hash)
     {
-        return Image\Show($this->imageRepository, $hash);
+        return new Image\Show($this->imageRepository, $hash);
     }
 }
