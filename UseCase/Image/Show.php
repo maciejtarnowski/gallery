@@ -19,7 +19,7 @@ class Show implements UseCase
     public function execute()
     {
         return [
-            'photo' => $this->imageRepository->getByHash($this->hash)
+            'image' => $this->imageRepository->getByHash($this->hash)
         ];
     }
 }

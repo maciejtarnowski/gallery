@@ -3,7 +3,7 @@
 namespace UseCase\Gallery;
 
 use UseCase\UseCase;
-use UseCase\Exception as UseCaseException;
+use UseCase\UseCaseException;
 use Gallery\Gallery\Repository as GalleryRepository;
 
 class Show implements UseCase
