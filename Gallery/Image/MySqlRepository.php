@@ -17,7 +17,7 @@ CREATE TABLE `image` (
   UNIQUE KEY `hash` (`hash`),
   UNIQUE KEY `filename` (`filename`),
   KEY `gallery_id` (`gallery_id`),
-  CONSTRAINT `image_ibfk_1` FOREIGN KEY (`gallery_id`) REFERENCES `gallery` (`id`)
+  CONSTRAINT `image_ibfk_1` FOREIGN KEY (`gallery_id`) REFERENCES `gallery` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 */
 class MySqlRepository implements Repository
