@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}{{ image.getName() }}{% endblock %}
+
+{% block content %}
+<h1>{{ image.getName() }}</h1>
+<h3>{{ image.getDimensions() }}</h3>
+
+<img src="/images/{{ image.getFilename() }}" alt="{{ image.getName() }}">
+{% endblock %}

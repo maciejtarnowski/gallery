@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ gallery.getName() }}{% endblock %}
+
+{% block content %}
+<h1>{{ gallery.getName() }}</h1>
+<h3>{{ gallery.getCreatedAt() | date("H:i d/m/Y") }}</h3>
+
+<ul>
+    {% for image in images %}
+        <li><a href="/image/{{ image.getHash() }}" title="{{ image.getName() }}">{{ image.getName() }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

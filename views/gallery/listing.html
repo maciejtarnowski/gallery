@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Lista galerii{% endblock %}
+
+{% block content %}
+<h1>Lista galerii</h1>
+
+<ul>
+    {% for gallery in galleries %}
+        <li><a href="/gallery/{{ gallery.getSlug() }}" title="{{ gallery.getName() }}">{{ gallery.getName() }}</a></li>
+    {% else %}
+        <li>Brak galerii</li>
+    {% endfor %}
+</ul>
+{% endblock %}
