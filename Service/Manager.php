@@ -13,6 +13,8 @@ use Gallery\Image\GalleryConstrainedRepositoryFactory;
 use UseCase\Factory as UseCaseFactory;
 
 use Interop\Container\ContainerInterface;
+use Slim\Views\Twig;
+use Slim\Views\TwigExtension;
 
 class Manager
 {
@@ -25,7 +27,23 @@ class Manager
 
     public function registerServices()
     {
+        $this->registerTwig();
         $this->registerUseCaseFactory();
+    }
+
+    private function registerTwig()
+    {
+        $this->registerService('Twig', function ($container) {
+            $view = new Twig('views', [
+                'cache' => false
+            ]);
+            $view->addExtension(new TwigExtension(
+                $container->get('router'),
+                $container->get('request')->getUri()
+            ));
+
+            return $view;
+        });
     }
 
     private function registerUseCaseFactory()
