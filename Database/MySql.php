@@ -63,6 +63,7 @@ class MySql implements Driver
         } catch (PDOException $ex) {
             throw new DriverException('Could not connect to database');
         }
+        $this->connection->exec('SET CHARACTER SET utf8');
     }
 
     private function prepareAndExecuteQuery($sql, $parameters = [])
