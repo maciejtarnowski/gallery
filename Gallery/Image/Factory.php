@@ -12,7 +12,7 @@ class Factory
             return null;
         }
 
-        return new Image($imageData['id'], $imageData['hash'], $imageData['name'], $imageData['filename'], new Dimensions($imageData['height'], $imageData['width']));
+        return new Image($imageData['id'], $imageData['hash'], $imageData['name'], $imageData['filename'], $imageData['gallery_id'], new Dimensions($imageData['height'], $imageData['width']));
     }
 
     public function getImages(array $imagesData)

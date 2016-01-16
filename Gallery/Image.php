@@ -10,15 +10,17 @@ class Image
     private $hash;
     private $name;
     private $filename;
+    private $galleryId;
     /** @var Dimensions $dimensions */
     private $dimensions;
 
-    public function __construct($id, $hash, $name, $filename, Dimensions $dimensions)
+    public function __construct($id, $hash, $name, $filename, $galleryId, Dimensions $dimensions)
     {
         $this->id = $id;
         $this->hash = $hash;
         $this->name = $name;
         $this->filename = $filename;
+        $this->galleryId = $galleryId;
         $this->dimensions = $dimensions;
     }
 
@@ -40,6 +42,11 @@ class Image
     public function getFilename()
     {
         return $this->filename;
+    }
+
+    public function getGalleryId()
+    {
+        return $this->galleryId;
     }
 
     public function getDimensions()

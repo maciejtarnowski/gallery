@@ -6,5 +6,9 @@
 <h1>{{ image.getName() }}</h1>
 <h3>{{ image.getDimensions() }}</h3>
 
-<img src="/images/{{ image.getFilename() }}" alt="{{ image.getName() }}">
+<img src="/assets/images/{{ image.getFilename() }}" alt="{{ image.getName() }}">
+
+<p>
+    <a href="/gallery/{{ gallery.getSlug() }}">&laquo; Wróć do galerii</a>
+</p>
 {% endblock %}
