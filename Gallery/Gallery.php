@@ -52,4 +52,9 @@ class Gallery
     {
         return $this->images;
     }
+
+    public function isPasswordCorrect($password)
+    {
+        return sha1($password) === $this->getPassword();
+    }
 }

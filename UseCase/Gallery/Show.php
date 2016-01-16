@@ -10,16 +10,22 @@ class Show implements UseCase
 {
     private $galleryRepository;
     private $slug;
+    private $password;
 
-    public function __construct(GalleryRepository $galleryRepository, $slug)
+    public function __construct(GalleryRepository $galleryRepository, $slug, $password = null)
     {
         $this->galleryRepository = $galleryRepository;
         $this->slug = $slug;
+        $this->password = $password;
     }
 
     public function execute()
     {
         $gallery = $this->getGallery();
+
+        if ($gallery->getPassword() && !$gallery->isPasswordCorrect($this->password)) {
+            throw new UnauthorizedException($gallery);
+        }
 
         return [
             'gallery' => $gallery,

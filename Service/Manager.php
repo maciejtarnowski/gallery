@@ -28,6 +28,7 @@ class Manager
     public function registerServices()
     {
         $this->registerTwig();
+        $this->registerPasswordStorage();
         $this->registerUseCaseFactory();
     }
 
@@ -43,6 +44,13 @@ class Manager
             ));
 
             return $view;
+        });
+    }
+
+    private function registerPasswordStorage()
+    {
+        $this->registerService('PasswordStorage', function ($container) {
+            return new PasswordStorage();
         });
     }
 

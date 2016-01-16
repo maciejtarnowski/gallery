@@ -21,13 +21,18 @@ class Factory
         return new Gallery\Listing($this->galleryRepository);
     }
 
-    public function getGalleryShow($slug)
+    public function getGalleryShow($slug, $password)
     {
-        return new Gallery\Show($this->galleryRepository, $slug);
+        return new Gallery\Show($this->galleryRepository, $slug, $password);
+    }
+
+    public function getGalleryPassword($slug)
+    {
+        return new Gallery\Password($this->galleryRepository, $slug);
     }
 
     public function getImageShow($hash)
     {
-        return new Image\Show($this->imageRepository, $hash);
+        return new Image\Show($this->imageRepository, $this->galleryRepository, $hash);
     }
 }
