@@ -5,10 +5,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Gallery\\": "Gallery/",
-            "Database\\": "Database/",
-            "UseCase\\": "UseCase/",
-            "Service\\": "Service/"
+            "\\": "src/"
         }
     }
 }
