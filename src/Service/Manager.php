@@ -35,7 +35,7 @@ class Manager
     private function registerTwig()
     {
         $this->registerService('Twig', function ($container) {
-            $view = new Twig('views', [
+            $view = new Twig(__DIR__ . '/../views', [
                 'cache' => false
             ]);
             $view->addExtension(new TwigExtension(
