@@ -3,9 +3,16 @@
         "slim/slim": "^3.1",
         "slim/twig-view": "^2.0"
     },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    },
+    "config": {
+        "bin-dir": "tests/bin"
+    },
     "autoload": {
         "psr-4": {
-            "\\": "src/"
+            "": "src/",
+            "spec\\": "tests/spec/"
         }
     }
 }
